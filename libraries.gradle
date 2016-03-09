@@ -1,0 +1,34 @@
+ext {
+    libs = libsMap(
+            spring: [
+                boot_actuator: 'org.springframework.boot:spring-boot-starter-actuator',
+                boot_web: 'org.springframework.boot:spring-boot-starter-web',
+                eureka_client: 'org.springframework.cloud:spring-cloud-starter-eureka'
+            ],
+            test: [
+                    junit: 'junit:junit:4.12',
+                    assertj: 'org.assertj:assertj-core:3.3.0',
+                    mockito: 'org.mockito:mockito-core:2.0.42-beta'
+            ],
+            springfox: [
+                    swagger_ui: 'io.springfox:springfox-swagger-ui:2.3.1',
+                    swagger2: 'io.springfox:springfox-swagger2:2.3.1'
+            ]
+    )
+}
+
+def libsMap(Map<String, ?> map) {
+    def processMap
+    processMap = { innerMap ->
+        innerMap.each {
+            if (it.value instanceof Map) {
+                innerMap[it.key] = processMap(it.value)
+            }
+        }
+        innerMap.asImmutable().withDefault {
+            throw new InvalidUserDataException(
+                    "No entry '$it' in dependency map (candidates: ${innerMap.keySet().sort().join(", ")})" )
+        }
+    }
+    processMap(map)
+}
