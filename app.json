@@ -1,6 +1,6 @@
 {
-  "name": "Template Service",
-  "description": "Template Service.",
+  "name": "Sidecar Service",
+  "description": "Sidecar Service.",
   "website": "https://github.com/spolnik/trading-office",
   "success_url": "/health",
   "env": {

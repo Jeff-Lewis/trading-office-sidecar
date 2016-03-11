@@ -8,10 +8,6 @@ buildscript {
     }
 }
 
-plugins {
-    id "org.sonarqube" version "1.2"
-}
-
 apply from: "$rootDir/gradle/versioning.gradle"
 apply from: "$rootDir/libraries.gradle"
 
@@ -26,13 +22,6 @@ apply plugin: 'java'
 apply plugin: 'spring-boot'
 apply from: "$rootDir/gradle/jacoco.gradle"
 
-sonarqube {
-    properties {
-        property "sonar.host.url", "https://sonar-nprogramming.rhcloud.com"
-        property "sonar.projectKey", "trading-office-template-service"
-        property "sonar.projectName", "Trading Office - Template Service"
-    }
-}
 
 sourceCompatibility = 1.8
 
@@ -55,8 +44,8 @@ dependencies {
     compile libs.spring.boot_web,
             libs.spring.boot_actuator,
             libs.spring.eureka_client,
-            libs.springfox.swagger_ui,
-            libs.springfox.swagger2
+            libs.spring.sidecar,
+            libs.spring.zuul
 
     testCompile libs.test.junit,
             libs.test.mockito,
@@ -64,7 +53,7 @@ dependencies {
 }
 
 jar {
-    baseName = 'trading-office-template-service'
+    baseName = 'trading-office-sidecar'
     version = '1.0.0'
 }
 

@@ -3,7 +3,9 @@ ext {
             spring: [
                 boot_actuator: 'org.springframework.boot:spring-boot-starter-actuator',
                 boot_web: 'org.springframework.boot:spring-boot-starter-web',
-                eureka_client: 'org.springframework.cloud:spring-cloud-starter-eureka'
+                eureka_client: 'org.springframework.cloud:spring-cloud-starter-eureka',
+                sidecar: 'org.springframework.cloud:spring-cloud-netflix-sidecar',
+                zuul: 'org.springframework.cloud:spring-cloud-starter-zuul'
             ],
             test: [
                     junit: 'junit:junit:4.12',
